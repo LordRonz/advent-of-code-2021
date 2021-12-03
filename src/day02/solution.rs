@@ -15,6 +15,7 @@ fn lines_from_file(filename: impl AsRef<Path>) -> Vec<Vec<String>> {
 }
 
 pub fn run() {
+    println!("Day 02:");
     let lines = lines_from_file("./src/day02/input");
     // Part A
     let mut x: i64 = 0;

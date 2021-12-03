@@ -13,6 +13,7 @@ fn lines_from_file(filename: impl AsRef<Path>) -> Vec<i64> {
 }
 
 pub fn run() {
+    println!("Day 01:");
     let lines = lines_from_file("./src/day01/input");
     // Part A
     let mut res = 0;
