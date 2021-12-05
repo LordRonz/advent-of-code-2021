@@ -13,12 +13,6 @@ fn parse_input() -> (Vec<i32>, Vec<Vec<[i32; 2]>>) {
         .map(|s| s.parse().expect("parse error"))
         .collect();
 
-    // let arr: Vec<Vec<[i32; 2]>> = f.lines()
-    //     .map(|l| l.unwrap().split(char::is_whitespace)
-    //         .map(|number| [number.parse().unwrap(), 0])
-    //         .collect())
-    //     .collect();
-
     let mut t = String::new();
     let _ = f.read_line(&mut t);
 
@@ -44,6 +38,7 @@ fn parse_input() -> (Vec<i32>, Vec<Vec<[i32; 2]>>) {
 }
 
 pub fn run() {
+    println!("Day 04:");
     let (numbers, mut boards) = parse_input();
 
     // Part A
@@ -87,6 +82,60 @@ pub fn run() {
         }
     }
     let mut sum = 0;
+    for num in boards[chosen_one as usize].iter() {
+        if num[1] == 0 {
+            sum += num[0];
+        }
+    }
+
+    println!("{}", sum * last_num);
+
+
+    // Part B
+
+    let mut chosen_much: i32 = 0;
+    last_num = -1;
+    let mut marker = vec![false; boards.len()];
+
+    for number in numbers.iter() {
+        for i in 0..boards.len() {
+            for j in 0..boards[i].len() {
+                if boards[i][j][0] == *number {
+                    boards[i][j][1] = 1;
+                }
+            }
+        }
+        for i in 0..boards.len() {
+            for j in 0..row_len {
+                let mut flag = true;
+                let mut flag2 = true;
+                for k in 0..row_len {
+                    if boards[i][j * row_len + k][1] == 0 {
+                        flag = false;
+                    }
+                    if boards[i][k * row_len + j][1] == 0 {
+                        flag2 = false;
+                    }
+                }
+                if flag || flag2 {
+                    if !marker[i] {
+                        chosen_much += 1;
+                    }
+                    marker[i] = true;
+                    chosen_one = i as i32;
+                    break;
+                }
+            }
+            if chosen_much == boards.len() as i32 {
+                break;
+            }
+        }
+        if chosen_much == boards.len() as i32 {
+            last_num = *number;
+            break;
+        }
+    }
+    sum = 0;
     for num in boards[chosen_one as usize].iter() {
         if num[1] == 0 {
             sum += num[0];
