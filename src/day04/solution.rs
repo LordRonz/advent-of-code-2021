@@ -106,6 +106,9 @@ pub fn run() {
             }
         }
         for i in 0..boards.len() {
+            if marker[i] {
+                continue;
+            }
             for j in 0..row_len {
                 let mut flag = true;
                 let mut flag2 = true;
@@ -118,9 +121,7 @@ pub fn run() {
                     }
                 }
                 if flag || flag2 {
-                    if !marker[i] {
-                        chosen_much += 1;
-                    }
+                    chosen_much += 1;
                     marker[i] = true;
                     chosen_one = i as i32;
                     break;
