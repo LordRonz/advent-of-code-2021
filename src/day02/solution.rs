@@ -8,9 +8,12 @@ fn lines_from_file(filename: impl AsRef<Path>) -> Vec<Vec<String>> {
     let f = BufReader::new(File::open(filename).unwrap());
 
     f.lines()
-        .map(|l| l.unwrap().split(char::is_whitespace)
-            .map(|number| number.parse().unwrap())
-            .collect())
+        .map(|l| {
+            l.unwrap()
+                .split(char::is_whitespace)
+                .map(|number| number.parse().unwrap())
+                .collect()
+        })
         .collect()
 }
 

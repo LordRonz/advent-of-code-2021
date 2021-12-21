@@ -7,9 +7,7 @@ use std::{
 fn lines_from_file(filename: impl AsRef<Path>) -> Vec<String> {
     let file = File::open(filename).expect("no such file");
     let buf = BufReader::new(file);
-    buf.lines()
-        .map(|line| line.unwrap())
-        .collect()
+    buf.lines().map(|line| line.unwrap()).collect()
 }
 
 fn get_filtered_item(items: &Vec<String>, prefer_common: bool) -> i32 {
@@ -24,19 +22,19 @@ fn get_filtered_item(items: &Vec<String>, prefer_common: bool) -> i32 {
         }
         let half = current.len() as f32 / 2.0;
         let char_to_remove: char;
-        if prefer_common {
+        char_to_remove = if prefer_common {
             if count as f32 >= half {
-                char_to_remove = '1';
+                '1'
             } else {
-                char_to_remove = '0';
+                '0'
             }
         } else {
             if count as f32 >= half {
-                char_to_remove = '0';
+                '0'
             } else {
-                char_to_remove = '1';
+                '1'
             }
-        }
+        };
         current.retain(|bit| bit.chars().nth(i).unwrap() == char_to_remove);
         i += 1;
     }
