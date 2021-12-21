@@ -20,18 +20,18 @@ fn parse_input() -> (Vec<i32>, Vec<Vec<[i32; 2]>>) {
     let mut board: Vec<[i32; 2]> = Vec::new();
     for line in f.lines() {
         let line = line.unwrap();
-        let splitted = line
-            .split(char::is_whitespace);
+        let splitted = line.split(char::is_whitespace);
         if splitted.clone().count() < 5 {
             boards.push(board);
             board = Vec::new();
             continue;
         }
-        board
-        .append(& mut splitted
-            .filter(|num| num.parse::<i32>().is_ok())
-            .map(|num| [num.parse().unwrap(), 0])
-            .collect());
+        board.append(
+            &mut splitted
+                .filter(|num| num.parse::<i32>().is_ok())
+                .map(|num| [num.parse().unwrap(), 0])
+                .collect(),
+        );
     }
 
     (numbers, boards)
@@ -89,7 +89,6 @@ pub fn run() {
     }
 
     println!("{}", sum * last_num);
-
 
     // Part B
 
