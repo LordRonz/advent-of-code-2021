@@ -9,10 +9,14 @@ mod day04;
 #[path = "day05/solution.rs"]
 mod day05;
 
+#[path = "day06/solution.rs"]
+mod day06;
+
 fn main() {
     day01::run();
     day02::run();
     day03::run();
     day04::run();
     day05::run();
+    day06::run();
 }
