@@ -68,7 +68,13 @@ fn part_b(input: &Vec<(String, String)>) -> usize {
             } else if tra == 5 {
                 if mappings[1].chars().map(|c| sig.contains(c)).all(|f| f) {
                     mappings[3] = sig;
-                } else if mappings[4].chars().map(|c| sig.contains(c)).filter(|p| *p).count() == 3 {
+                } else if mappings[4]
+                    .chars()
+                    .map(|c| sig.contains(c))
+                    .filter(|p| *p)
+                    .count()
+                    == 3
+                {
                     mappings[5] = sig;
                 } else {
                     mappings[2] = sig;
@@ -76,7 +82,13 @@ fn part_b(input: &Vec<(String, String)>) -> usize {
             } else if tra == 6 {
                 if mappings[4].chars().map(|c| sig.contains(c)).all(|f| f) {
                     mappings[9] = sig;
-                } else if mappings[7].chars().map(|c| sig.contains(c)).filter(|p| *p).count() == 3 {
+                } else if mappings[7]
+                    .chars()
+                    .map(|c| sig.contains(c))
+                    .filter(|p| *p)
+                    .count()
+                    == 3
+                {
                     mappings[0] = sig;
                 } else {
                     mappings[6] = sig;
@@ -91,7 +103,8 @@ fn part_b(input: &Vec<(String, String)>) -> usize {
         for (j, n) in outputs.iter().rev().enumerate() {
             for i in 0..10 {
                 if mappings[i].chars().map(|c| n.contains(c)).all(|f| f)
-                    && mappings[i].len() == n.len() {
+                    && mappings[i].len() == n.len()
+                {
                     parsed += i * 10_usize.pow(j.try_into().unwrap());
                 }
             }
