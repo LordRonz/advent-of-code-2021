@@ -1,0 +1,15 @@
+{
+  "name": "advent-of-code-2021",
+  "version": "1.0.0",
+  "description": "It's that time of the year again",
+  "main": "index.js",
+  "repository": "git@github.com:LordRonz/advent-of-code-2021.git",
+  "author": "LordRonz <aarontanhar2000@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^7.0.0"
+  },
+  "scripts": {
+    "prepare": "husky install"
+  }
+}
